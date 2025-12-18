@@ -112,6 +112,11 @@
                     "image": "carot2.jpg",
                     "title": "Honda Civic Generations",
                     "link": "https://jonash18.github.io/CivicGallery/"
+                },
+                {
+                    "image": "dg.jpg",
+                    "title": "Dragon Ball Z",
+                    "link": "https://jonash18.github.io/DragonBallZ-API-/"
                 }
             ]
         };
@@ -119,20 +124,19 @@
         var activities = data.projects;
         for (var i = 0; i < activities.length; i++) {
             content.innerHTML += `
-                <div class="col-12 col-md-6 col-lg-6">
-                    <div class="card-group">
-                        <div class="card shadow-sm rounded">
-                            <img src="${activities[i].image}" class="card-img-top" alt="ACT 4">
-                            <div class="card-body bg-light rounded">
-                                <h2 class="card-title text-center bg-light">${activities[i].title}</h2>
-                                <a class="btn btn-primary px-2 py-0 bg-secondary border-dark"
-                                    href=${activities[i].link} role="button" rel="noopener">View</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        
-      `;
+    <div class="col-12 col-md-6 col-lg-6">
+      <div class="card shadow-sm rounded">
+        <div class="ratio ratio-16x9">
+          <img src="${activities[i].image}" class="card-img-top object-fit-cover" alt="${activities[i].title}">
+        </div>
+        <div class="card-body bg-light rounded">
+          <h2 class="card-title text-center bg-light">${activities[i].title}</h2>
+          <a class="btn btn-primary px-2 py-0 bg-secondary border-dark"
+             href="${activities[i].link}" role="button" rel="noopener">View</a>
+        </div>
+      </div>
+    </div>`;
+
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
