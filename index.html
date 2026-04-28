@@ -4,144 +4,368 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Profile
-    </title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <title>Jonash Valencia | Software Portfolio</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        :root {
+            --bg-deep: #030712;
+            --card-surface: rgba(17, 24, 39, 0.7);
+            --accent-primary: #3b82f6;
+            --accent-secondary: #60a5fa;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+            --glass-border: rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-deep);
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 35%),
+                radial-gradient(circle at 100% 100%, rgba(37, 99, 235, 0.08) 0%, transparent 35%);
+            color: var(--text-main);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Nav Glassmorphism */
+        .navbar {
+            backdrop-filter: blur(16px);
+            background: rgba(3, 7, 18, 0.8) !important;
+            border-bottom: 1px solid var(--glass-border);
+            transition: all 0.3s ease;
+        }
+
+        .nav-link {
+            font-weight: 500;
+            color: var(--text-dim) !important;
+            font-size: 0.95rem;
+            padding: 0.5rem 1.2rem !important;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--accent-primary) !important;
+        }
+
+        /* Hero Image Engineering */
+        .profile-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-pic {
+            width: 320px;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 30px;
+            border: 1px solid var(--glass-border);
+            z-index: 2;
+            position: relative;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .profile-glow {
+            position: absolute;
+            width: 120%;
+            height: 120%;
+            top: -10%;
+            left: -10%;
+            background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
+            opacity: 0.15;
+            filter: blur(40px);
+            z-index: 1;
+        }
+
+        /* Content Cards */
+        .glass-card {
+            background: var(--card-surface);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 28px;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(59, 130, 246, 0.4);
+            transform: translateY(-8px);
+        }
+
+        /* Typography Highlights */
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #fff 0%, var(--accent-secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--accent-primary);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Skill Chips */
+        .skill-pill {
+            background: rgba(59, 130, 246, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            color: var(--text-main);
+            padding: 12px 20px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill-pill:hover {
+            background: rgba(59, 130, 246, 0.15);
+            border-color: var(--accent-primary);
+        }
+
+        /* Buttons */
+        .btn-premium {
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 16px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 20px -5px var(--accent-primary);
+            transition: all 0.3s ease;
+        }
+
+        .btn-premium:hover {
+            background: #2563eb;
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px -5px var(--accent-primary);
+            color: white;
+        }
+
+        /* Projects Section */
+        .project-thumbnail {
+            transition: transform 0.5s ease;
+            filter: saturate(0.8);
+        }
+
+        .glass-card:hover .project-thumbnail {
+            transform: scale(1.1);
+            filter: saturate(1.2);
+        }
+
+        .project-tag {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            color: var(--accent-secondary);
+            font-weight: 600;
+        }
+
+        /* Utility */
+        .leading-relaxed { line-height: 1.8; }
+        .ls-tight { letter-spacing: -1px; }
+
+        @media (max-width: 991px) {
+            .hero-title { font-size: 2.5rem; }
+            .profile-pic { width: 100%; height: 400px; }
+        }
+    </style>
 </head>
 
-<body data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="100" tabindex="04"
-    class="bg-light d-flex flex-column min-vh-100">
+<body>
 
-
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-0" id="nav">
-        <div class="container-fluid px-3 py-2">
-            <a class="navbar-brand" href="#">
-                <img src="VALENCIA_logo.svg" alt="Bootstrap" width="70" height="34">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="VALENCIA_logo.svg" alt="Valencia" width="50" class="me-3">
+                <span class="fw-extrabold ls-tight">J. VALENCIA</span>
             </a>
-            <div class="h4 pt-1 text-white">Portfolio</div>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i class="ph ph-dots-three-outline-vertical-fill text-white h3"></i>
             </button>
-            <div class="collapse navbar-collapse px-3" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#activities">Projects</a>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#activities">Portfolio</a></li>
+                    <li class="nav-item ms-lg-4">
+                        <a href="mailto:contact@jonash.com" class="btn-premium px-4 py-2 small">Contact Me</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <div class="container-fluid pt-5 mb-5">
-        <div class="row my-5">
-            <div class="col-12 col-lg-4 pt-5 py-3">
-                <div class="text-center">
-                    <img src="PP.jpg" alt="profile picture" class="img-fluid rounded shadow-lg"
-                        style="width: 250px; height: 250px; object-fit: cover;">
-                    <h4 class="mt-3">Web Developer</h4>
-                </div>
-            </div>
-            <div class="col-12 col-md-12 col-lg-8 py-4">
-                <div class="card border-dark shadow-sm">
-                    <div class="card-header text-center bg-secondary text-white">About me
-                    </div>
-                    <div class="card-body" style="font-family: Arial, Helvetica, sans-serif;">
-                        <h2 class="card-title text-center fw-bold">Hi! I am Jonash!</h2>
-                        <p class="card-text">
-                            Hello! I'm Jonash B. Valencia, a 3rd year Information Technology student at the
-                            Polytechnic University of the Philippines (PUP) with a passion for building smart,
-                            user-friendly systems. I specialize in web development, database management, and systems
-                            analysis—always striving to create solutions that are both functional and intuitive.
-                            Whether it's designing enrollment platforms, troubleshooting PHP and SQL code, or
-                            translating technical concepts into plain language, I love making technology
-                            approachable
-                            for everyone. I'm also a visual thinker who enjoys using diagrams and creative
-                            presentation
-                            to clarify complex ideas.
-                        </p>
-                        <p>
-                            This is part of an activity for my Web Development subject, where I aim to hone not just
-                            my technical skills, but also my commitment to creating meaningful, user-centered
-                            solutions.
-                        </p>
+    <main class="container">
+        <section class="row align-items-center min-vh-100 py-5">
+            <div class="col-lg-5 order-2 order-lg-1 text-center text-lg-start">
+                <div class="pe-lg-5">
+                    <span class="section-tag">Systems & Infrastructure</span>
+                    <h1 class="hero-title mb-4">Crafting <span class="text-gradient">Digital Architecture</span> that scale.</h1>
+                    <p class="lead text-dim leading-relaxed mb-5">
+                        I am a 3rd-year IT scholar at PUP specializing in full-stack development. I build high-performance systems by merging robust backend logic with seamless user interfaces.
+                    </p>
+                    
+                    <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
+                        <a href="#activities" class="btn-premium">View My Work <i class="ph ph-arrow-right"></i></a>
+                        <div class="skill-pill">
+                            <i class="ph ph-lightning-fill text-warning"></i>
+                            Open for Internships
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="h1 px-2 py-4 mt-5 bg-dark text-white text-center rounded">Activities</div>
-
-    </div>
-    <section id="activities">
-        <div class="container-fluid my-2">
-            <div class="row justify-content-center align-items-start g-4" id="content">
+            
+            <div class="col-lg-7 order-1 order-lg-2 mb-5 mb-lg-0 text-center text-lg-end">
+                <div class="profile-container">
+                    <div class="profile-glow"></div>
+                    <img src="PP.jpg" alt="Jonash Valencia" class="profile-pic">
+                    <div class="glass-card position-absolute bottom-0 start-0 p-3 m-3 d-none d-md-block" style="z-index: 3;">
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="bg-primary p-2 rounded-3"><i class="ph ph-graduation-cap text-white h4 m-0"></i></div>
+                            <div class="text-start">
+                                <p class="small text-white fw-bold mb-0">Bachelor of Science, IT</p>
+                                <p class="smallest text-dim mb-0" style="font-size: 0.7rem;">Polytechnic University of the Philippines</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
+        </section>
 
+        <section class="row g-4 mb-5 pb-5">
+            <div class="col-6 col-md-3">
+                <div class="skill-pill h-100 justify-content-center">
+                    <i class="ph ph-code-bold text-primary"></i> PHP Engineering
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="skill-pill h-100 justify-content-center">
+                    <i class="ph ph-database-bold text-primary"></i> MySQL Architecture
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="skill-pill h-100 justify-content-center">
+                    <i class="ph ph-layout-bold text-primary"></i> UI/UX Design
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="skill-pill h-100 justify-content-center">
+                    <i class="ph ph-git-branch-bold text-primary"></i> Systems Analysis
+                </div>
+            </div>
+        </section>
 
-    </section>
+        <section id="activities" class="py-5">
+            <div class="text-center mb-5 pb-lg-4">
+                <span class="section-tag">Portfolio</span>
+                <h2 class="display-5 fw-bold text-white mb-3 ls-tight">Case Studies</h2>
+                <p class="text-dim mx-auto" style="max-width: 600px;">Selected works representing a balance between aesthetic design and functional engineering.</p>
+            </div>
+            
+            <div class="row g-4 justify-content-center" id="content">
+                </div>
+        </section>
+    </main>
 
-    <footer class="bg-light border-top">
-        <div class="container text-center py-3">
-            <small class="text-muted">
-                &copy; 2025 <strong>Jonash B. Valencia</strong> &mdash; All rights reserved.
-            </small>
+    <footer class="py-5 mt-5 border-top border-secondary border-opacity-10">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="text-dim small mb-0">
+                        &copy; 2026 <span class="text-white fw-bold">Jonash B. Valencia</span>. Building the future.
+                    </p>
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                    <div class="d-flex gap-4 justify-content-center justify-content-md-end">
+                        <a href="#" class="text-dim hover-white"><i class="ph ph-github-logo h4"></i></a>
+                        <a href="#" class="text-dim hover-white"><i class="ph ph-linkedin-logo h4"></i></a>
+                        <a href="#" class="text-dim hover-white"><i class="ph ph-instagram-logo h4"></i></a>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 
-
     <script>
-        var content = document.getElementById("content");
-        var data = {
+        const data = {
             "projects": [
                 {
                     "image": "iphone-17.png",
-                    "title": "IPHONE 17",
-                    "link": "https://jonash18.github.io/IPHONE/"
+                    "title": "iPhone 17 Architecture",
+                    "link": "https://jonash18.github.io/IPHONE/",
+                    "tag": "Concept Engineering",
+                    "description": "High-fidelity landing page focusing on fluid animations and responsive product display."
                 },
                 {
                     "image": "Taal-Volcano4.jpg",
-                    "title": "Taal Volcano",
-                    "link": "https://jonash18.github.io/TaalVolcano/"
+                    "title": "Taal Geo-Showcase",
+                    "link": "https://jonash18.github.io/TaalVolcano/",
+                    "tag": "Travel Tech",
+                    "description": "A multimedia deep-dive into geological wonders using modern CSS grid layouts."
                 },
                 {
                     "image": "carot2.jpg",
-                    "title": "Honda Civic Generations",
-                    "link": "https://jonash18.github.io/CivicGallery/"
+                    "title": "Honda Automotive Archive",
+                    "link": "https://jonash18.github.io/CivicGallery/",
+                    "tag": "Dynamic Systems",
+                    "description": "Database-driven gallery showcasing vehicle evolution through high-res rendering."
                 },
                 {
                     "image": "dg.jpg",
-                    "title": "Dragon Ball Z",
-                    "link": "https://jonash18.github.io/DragonBallZ-API-/"
+                    "title": "Dragon Ball REST API",
+                    "link": "https://jonash18.github.io/DragonBallZ-API-/",
+                    "tag": "API Integration",
+                    "description": "Asynchronous data fetching and rendering using external RESTful endpoints."
                 }
             ]
         };
 
-        var activities = data.projects;
-        for (var i = 0; i < activities.length; i++) {
-            content.innerHTML += `
-    <div class="col-12 col-md-6 col-lg-6">
-      <div class="card shadow-sm rounded">
-        <div class="ratio ratio-16x9">
-          <img src="${activities[i].image}" class="card-img-top object-fit-cover" alt="${activities[i].title}">
-        </div>
-        <div class="card-body bg-light rounded">
-          <h2 class="card-title text-center bg-light">${activities[i].title}</h2>
-          <a class="btn btn-primary px-2 py-0 bg-secondary border-dark"
-             href="${activities[i].link}" role="button" rel="noopener">View</a>
-        </div>
-      </div>
-    </div>`;
-
-        }
+        const content = document.getElementById("content");
+        
+        content.innerHTML = data.projects.map(project => `
+            <div class="col-12 col-md-6">
+                <div class="card glass-card h-100 overflow-hidden">
+                    <div class="ratio ratio-16x9 overflow-hidden">
+                        <img src="${project.image}" class="project-thumbnail object-fit-cover" alt="${project.title}">
+                    </div>
+                    <div class="card-body p-4 p-lg-5 d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <span class="project-tag">${project.tag}</span>
+                            <i class="ph ph-trend-up text-primary"></i>
+                        </div>
+                        <h3 class="h4 fw-bold text-white mb-3">${project.title}</h3>
+                        <p class="text-dim small mb-4">${project.description}</p>
+                        <div class="mt-auto">
+                            <a href="${project.link}" class="btn-premium py-2 px-4 small" target="_blank" rel="noopener">
+                                Explore Project <i class="ph ph-arrow-square-out"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `).join('');
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-        crossorigin="anonymous"></script>
-</body>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
