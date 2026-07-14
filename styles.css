@@ -1,0 +1,184 @@
+:root {
+    --bg-deep: #030712;
+    --card-surface: rgba(17, 24, 39, 0.7);
+    --accent-primary: #3b82f6;
+    --accent-secondary: #60a5fa;
+    --text-main: #f8fafc;
+    --text-dim: #94a3b8;
+    --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg-deep);
+    background-image: radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.08) 0%, transparent 35%),
+        radial-gradient(circle at 100% 100%, rgba(37, 99, 235, 0.08) 0%, transparent 35%);
+    color: var(--text-main);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Nav Glassmorphism */
+.navbar {
+    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(16px);
+    background: rgba(3, 7, 18, 0.8) !important;
+    border-bottom: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: var(--text-dim) !important;
+    font-size: 0.95rem;
+    padding: 0.5rem 1.2rem !important;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--accent-primary) !important;
+}
+
+/* Hero Image Engineering */
+.profile-container {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-pic {
+    width: 320px;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 30px;
+    border: 1px solid var(--glass-border);
+    z-index: 2;
+    position: relative;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.profile-glow {
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    top: -10%;
+    left: -10%;
+    background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
+    opacity: 0.15;
+    filter: blur(40px);
+    z-index: 1;
+}
+
+/* Content Cards */
+.glass-card {
+    background: var(--card-surface);
+    -webkit-backdrop-filter: blur(20px);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 28px;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border 0.3s ease;
+}
+
+.glass-card:hover {
+    border-color: rgba(59, 130, 246, 0.4);
+    transform: translateY(-8px);
+}
+
+/* Typography Highlights */
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1.1;
+}
+
+.text-gradient {
+    background: linear-gradient(135deg, #fff 0%, var(--accent-secondary) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-tag {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--accent-primary);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+/* Skill Chips */
+.skill-pill {
+    background: rgba(59, 130, 246, 0.05);
+    border: 1px solid rgba(59, 130, 246, 0.15);
+    color: var(--text-main);
+    padding: 12px 20px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.skill-pill:hover {
+    background: rgba(59, 130, 246, 0.15);
+    border-color: var(--accent-primary);
+}
+
+/* Buttons */
+.btn-premium {
+    background: var(--accent-primary);
+    color: white;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 10px 20px -5px var(--accent-primary);
+    transition: all 0.3s ease;
+}
+
+.btn-premium:hover {
+    background: #2563eb;
+    transform: scale(1.02);
+    box-shadow: 0 15px 30px -5px var(--accent-primary);
+    color: white;
+}
+
+/* Projects Section */
+.project-thumbnail {
+    transition: transform 0.5s ease;
+    filter: saturate(0.8);
+}
+
+.glass-card:hover .project-thumbnail {
+    transform: scale(1.1);
+    filter: saturate(1.2);
+}
+
+.project-tag {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    color: var(--accent-secondary);
+    font-weight: 600;
+}
+
+/* Utility */
+.leading-relaxed { line-height: 1.8; }
+.ls-tight { letter-spacing: -1px; }
+
+@media (max-width: 991px) {
+    .hero-title { font-size: 2.5rem; }
+    .profile-pic { width: 100%; height: 400px; }
+}
+
+.text-smallest { font-size: 0.7rem; }
+.content-max-width { max-width: 600px; }
